@@ -6,5 +6,5 @@
 底部导航：foot_nav<br>
 
 实现方法：<br>
-使用less并用gulp打包<br>
+使用less并用gulp解析为css<br>
 使用规范请参考<移动端通用样式设计规范.dox><br>
