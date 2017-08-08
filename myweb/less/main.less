@@ -26,8 +26,8 @@ a {
 .verticle(){
     /* 水平垂直居中方法 */
     position: absolute;
-    left: 0;
-    right: 0;
+    //left: 0;
+    //right: 0;
     top: 0;
     bottom: 0;
     margin: auto;
@@ -56,74 +56,55 @@ input[type="reset"] {
         z-index: 999;
         top: 0;
         background: #fff;
-    }
-
-
-
-    /*标签栏标题*/
-
-    #head_tab h2 {
-        font-size: 0.36rem;
-        height: @head_tab_h;
-        line-height: @head_tab_h;
+        h2 {
+            /*标签栏标题*/
+            font-size: 0.36rem;
+            height: @head_tab_h;
+            line-height: @head_tab_h;
+        }
     }
 
 
 
     /*返回位置图标 30px*30px*/
-    .head_tab_side(right){
+    .head_tab_side_set(left){
           display: block;
         .verticle;
         height: 0.3rem;
         line-height: 0.3rem;
-        margin-right: 0.3rem;
+        margin-left: 0.3rem;
         font-size: 0.28rem;
          left: 0; /*向右浮动*/
     }
-    .head_tab_side(left){
+    .head_tab_side_set(right){
          display: block;
         .verticle;
         height: 0.3rem;
         line-height: 0.3rem;
         margin-right: 0.3rem;
         font-size: 0.28rem;
-        left: 0; /*向右浮动*/
+        right: 0; /*向左浮动*/
        
     }
     #head_tab .head_left {
-        .head_tab_side(right);
+        .head_tab_side_set(left);
+        img{
+             height: 100%;
+        }
     }
 
     #head_tab .head_right {
-        .head_tab_side(left);
-    }
-
-    #head_tab .head_left img,  
-    #head_tab .head_right img {
-
-        height: 100%;
+        .head_tab_side_set(right);
+        img{
+             height: 100%;
+        }
     }
 
 
 
 /* 模块二：顶部导航 */
-
-    #head_nav {
-        margin: 0.2rem 0.3rem;
-        height: 0.65rem;
-    }
-
-    #head_nav ul {
-        border-radius: 0.1rem;
-        border: 0.01rem @theme_color solid;
-        /* 修改导航外框颜色*/
-        height: 100%;
-        box-sizing: border-box;
-    }
-
-
-    //布局选择设置 
-    #head_nav(two){
+    //顶部导航布局选择设置 
+    .head_nav_set(two){
         li{
          /*两栏布局*/
          width: 50%;
@@ -133,7 +114,7 @@ input[type="reset"] {
         height: 100%;
         }
     }
-      #head_nav(three){
+      .head_nav_set(three){
         li{
          /*三栏布局*/
          width: 33.3%;
@@ -143,7 +124,7 @@ input[type="reset"] {
         height: 100%;
         }
     }
-     #head_nav(four){
+     .head_nav_set(four){
         li{
          /*四栏布局*/
          width: 25%;
@@ -153,34 +134,41 @@ input[type="reset"] {
         height: 100%;
         }
     }
-    /* 布局选择 */
-     #head_nav(two){}
 
-    #head_nav ul li a:first-child {
-        border-radius: 0.1rem 0 0 0.1rem;
+    #head_nav {
+        .head_nav_set(two); // 布局选择 
+        margin: 0.2rem 0.3rem;
+        height: 0.65rem;
+        ul {
+            border-radius: 0.1rem;
+            border: 0.01rem @theme_color solid;
+            /* 修改导航外框颜色*/
+            height: 100%;
+            box-sizing: border-box;
+            li {
+                .on {
+                    color: #fff;
+                    background-color: @theme_color;
+                    /* 高亮状态背景颜色 */
+                }
+                a {
+                    display: block;
+                    font-size: 0.28rem;
+                    text-align: center;
+                    line-height: 0.65rem;
+                    color: @theme_color;
+                    /* 正常状态字颜色 */
+                }
+                &:last-child {
+                    border-radius: 0 0.1rem 0.1rem 0;
+                    border-right: 0rem solid @theme_color;
+                }
+                &:first-child {
+                    border-radius: 0.1rem 0 0 0.1rem;
+                }
+            }
+        }
     }
-    
-
-    #head_nav ul li a:last-child {
-        border-radius: 0 0.1rem 0.1rem 0;
-        border-right: 0rem solid @theme_color;
-    }
-
-    #head_nav ul li a {
-        display: block;
-        font-size: 0.28rem;
-        text-align: center;
-        line-height: 0.65rem;
-        color: @theme_color;
-        /* 正常状态字颜色 */
-    }
-
-    #head_nav ul li .on {
-        color: #fff;
-        background-color: @theme_color;
-        /* 高亮状态背景颜色 */
-    }
-
 
 
 /*通用列表样式，适用于图片+1到2行文字布局，如消息列表，网关列表等*/
@@ -188,57 +176,66 @@ input[type="reset"] {
 
 /*模块三：设置和个人中心界面*/
 
-    #content_list_set {}
-
-    #content_list_set ul {
-        background-color: #fff;
-        box-sizing: border-box;
-        margin: 0.2rem 0;
-        padding: 0 0.2rem;
-        /*border-bottom: 1px #ddd solid;
-                border-top: 1px #ddd solid; */
+    ///personal_list 
+    #content_list_set{
+        ul{
+            background-color: #fff;
+            box-sizing: border-box;
+            margin: 0.2rem 0;
+            padding: 0 0.2rem;
+            li{
+                position: relative;
+                height: 1.2rem;
+                border-bottom: 1px #ddd solid;
+                &:last-child {
+                    border-bottom: 0px #ddd solid;
+                }
+                img{ /*图片尺寸30px*/
+                    .verticle;
+                    height: 30%;
+                    &:last-child {
+                        right: 0;
+                    }
+                    &:first-child {
+                       left: 0;
+                    }
+                }
+                div{
+                    height: 1.2rem;
+                    line-height: 1.2rem;
+                    font-size: 0.28rem;
+                    margin: 0 0.5rem;
+                }
+            }
+        }
+        
     }
-
-    #content_list_set ul li {
-        position: relative;
-        height: 1.2rem;
-        border-bottom: 1px #ddd solid;
-    }
-
-    #content_list_set ul li:last-child {
-        border-bottom: 0px #ddd solid;
-    }
-
-    #content_list_set ul li img {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        height: 30%;
-    }
-
-
-
-    /*图片尺寸30px*/
-
-    #content_list_set ul li img:first-child {
-        left: 0;
-    }
-
-    #content_list_set ul li div {
-        height: 1.2rem;
-        line-height: 1.2rem;
-        font-size: 0.28rem;
-        margin: 0 0.5rem;
-    }
-
-    #content_list_set ul li img:last-child {
-        right: 0;
-    }
-
 
 
 /*模块四：底部导航*/
+    //底部导航布局选择设置 
+    .foot_nav_common{//li样式
+         box-sizing: border-box;
+        /*防止内外边距和外框线把宽度撑开*/
+        float: left;
+        height: 100%;
+        position: relative;
+    }
+      .foot_nav_set(three){
+         /*三栏布局*/
+         width: 33.3%;
+         .foot_nav_common;
+    }
+     .foot_nav_set(four){
+         /*四栏布局*/
+         width: 25%;
+         .foot_nav_common;
+    }
+     .foot_nav_set(five){
+         /*五栏布局*/
+         width: 20%;
+         .foot_nav_common;
+    }
 
     #foot_nav {
         position: fixed;
@@ -250,55 +247,35 @@ input[type="reset"] {
         height: 0.98rem;
         width: 100%;
         border-top: 0.01rem solid #ddd;
-    }
-
-    #foot_nav ul {
-        width: 100%;
-        height: 0.98rem;
-        line-height: 0.98rem;
-        text-align: center;
-    }
-
-    #foot_nav ul li {
-        position: relative;
-        float: left;
-        /*三栏布局*/
-        width: 33.3%;
-        /* 四栏布局
-                width:25%;
-                五栏布局
-                width:20%; */
-    }
-
-    #foot_nav ul li a {
-        display: block;
-        height: 100%;
-        width: 100%;
-    }
-
-    #foot_nav ul li div {
-        position: relative;
-        bottom: -0.28rem;
-        color: #929292;
-        font-size: 0.2rem;
-    }
-
-    #foot_nav ul .on a div {
-        color: #6db1f0;
-        /* 自行修改高亮字体颜色 */
-    }
-
-
-
-    /*底部导航图标54px*54px*/
-
-    #foot_nav ul li img {
-        position: absolute;
-        right: 0;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        margin: auto;
-        height: 0.54rem;
-        margin-top: 0.03rem;
+        ul{
+            width: 100%;
+            height: 0.98rem;
+            line-height: 0.98rem;
+            text-align: center;
+            .on a div{
+                color: @theme_color;
+                /* 自行修改高亮字体颜色 */
+            }
+            li{
+                img{    /*底部导航图标54px*54px*/
+                    .verticle;
+                    right:0;
+                    left:0;
+                    height: 0.54rem;
+                    margin-top: 0.03rem;
+                }
+                .foot_nav_set(four);
+                a{
+                    display: block;
+                    height: 100%;
+                    width: 100%;
+                }
+                div{
+                    position: relative;
+                    bottom: -0.28rem;
+                    color: #929292;
+                    font-size: 0.2rem;
+                }
+            }
+        }
     }
