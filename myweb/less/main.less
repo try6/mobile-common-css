@@ -101,7 +101,6 @@ input[type="reset"] {
     }
 
 
-
 /* 模块二：顶部导航 */
     //顶部导航布局选择设置 
     .head_nav_set(two){
@@ -172,24 +171,35 @@ input[type="reset"] {
 
 
 /*通用列表样式，适用于图片+1到2行文字布局，如消息列表，网关列表等*/
+/* 模块四：消息列表 */
+    //message_list
+    #message_list{
 
+    }
 
 /*模块三：设置和个人中心界面*/
-
+    .ul(){
+        background-color: #fff;
+        box-sizing: border-box;
+        margin: 0.2rem 0;
+        padding: 0 0.2rem;
+    }   
+    .li(){
+        position: relative;
+      //  padding: 10px 10px 15px 10px;
+        overflow: hidden;
+        border-bottom: 0.01rem solid #ddd;
+        &:last-child {
+            border-bottom: 0px #ddd solid;
+        }
+    }
     ///personal_list 
     #content_list_set{
         ul{
-            background-color: #fff;
-            box-sizing: border-box;
-            margin: 0.2rem 0;
-            padding: 0 0.2rem;
+            .ul;
             li{
-                position: relative;
-                height: 1.2rem;
-                border-bottom: 1px #ddd solid;
-                &:last-child {
-                    border-bottom: 0px #ddd solid;
-                }
+               .li; 
+               height: 1.2rem;
                 img{ /*图片尺寸30px*/
                     .verticle;
                     height: 30%;
@@ -209,6 +219,41 @@ input[type="reset"] {
             }
         }
         
+    }
+
+    //message_list
+    #message_list{
+        ul{
+            .ul;
+            li{
+                .li;
+                .title{
+                    margin:0.3rem 0 0.15rem 0;
+                    /* height:0.3rem; */
+                    .mask{
+                        /* 消息是否已读标识 */
+                        float: left;
+                        height: 0.08rem;
+                        width: 0.08rem;
+                        border-radius: 50%;
+                        margin:0.05rem;
+                    }
+                    .color{
+                       /*  消息已读 */
+                       background-color: #ff3600;
+                    }
+                    h5{
+                        height: 100%;
+                        line-height:100%;
+                        font-size: 0.30rem;
+                    }
+                }
+                .content{
+                    margin: 0.15rem 0 0.3rem 0;
+                    font-size: 0.26rem;
+                }
+            }
+        }
     }
 
 
