@@ -9,89 +9,119 @@
 </head>
 
 <body style="background-color: #f2f2f2;">
-    <!-- 顶部导航 -->
-    <div id="head_tab">
-        <a href="#" class="head_left">
-			<img src="../img/back.png" alt=""> 
-			<!--  返回 -->
-		</a>
-        <h2>标签栏标题</h2>
-        <a href="#" class="head_right">
-			 <img src="../img/in.png" alt="">
-			<!-- 返回 -->
-		</a>
-    </div>
-    <!-- 顶部导航 -->
-    <div id="head_nav">
-        <ul>
-            <li><a href="#">标题一</a></li>
-            <li><a class="on" href="#">标题一</a></li>
-            <!-- <li><a  h	ref="#">标题一</a></li> -->
-        </ul>
-    </div>
-
-    <!-- 设置和个人中心界面 -->
-    <div id="content_list_set">
-        <ul>
-            <li>
-                <img src="../img/back.png">
-                <div>修改密码</div>
-                <img src="../img/in.png">
-            </li>
-            <li>
-                <img src="../img/back.png">
-                <div>修改密码</div>
-                <img src="../img/in.png">
-            </li>
-        </ul>
-    </div>
-    <!-- 消息列表界面 -->
-    <div id="message_list">
-        <ul>
-            <li>
-                <div class="title">
-                    <div class="mask color"></div>
-                     <h5>报警信息</h5>
-                </div>
-                <div class="content">2017-5-24 12:22:12，A楼办公区配电箱发生严重漏电报警</div>
-            </li>
-            <li>
-                <div class="title">
-                    <div class="mask color"></div>
-                     <h5>报警信息</h5>
-                </div>
-                <div class="content">2017-5-24 12:22:12，A楼办公区配电箱发生严重漏电报警</div>
-            </li>
-        </ul>
-    </div>
-    <!-- 底部导航 -->
-    <div id="foot_nav">
-        <ul>
-            <li class="on">
-                <a href="#">
-					<img src="../img/index_on.png">
-					<div>信息</div>
-				</a>
-            </li>
-            <li>
-                <a href="#">
-					<img src="../img/index_off.png">
-					<div>信息</div>
-				</a>
-            </li>
-            <li>
-                <a href="../message/message.html">
-					<img src="../img/index_off.png">
-					<div>信息</div>
-				</a>
-            </li>
-            <li>
-                <a href="../message/message.html">
-					<img src="../img/index_off.png">
-					<div>信息</div>
-				</a>
-            </li>
-        </ul>
+   <!--  顶部导航
+   <div id="head_tab">
+       <a href="#" class="head_left">
+               <img src="../img/back.png" alt=""> 
+               返回
+           </a>
+       <h2>标签栏标题</h2>
+       <a href="#" class="head_right">
+                <img src="../img/in.png" alt="">
+               返回
+           </a>
+   </div>
+   顶部导航
+   <div id="head_nav">
+       <ul>
+           <li><a href="#">标题一</a></li>
+           <li class="on" ><a  href="#">标题一</a></li>
+           <li><a  h    ref="#">标题一</a></li>
+       </ul>
+   </div>
+   
+   设置和个人中心界面
+   <div id="content_list_set">
+       <ul>
+           <li>
+               <img src="../img/back.png">
+               <div>修改密码</div>
+               <img src="../img/in.png">
+           </li>
+           <li>
+               <img src="../img/back.png">
+               <div>修改密码</div>
+               <img src="../img/in.png">
+           </li>
+       </ul>
+   </div>
+   消息列表界面
+   <div id="message_list">
+       <ul>
+           <li>
+               <div class="title">
+                   <div class="mask color"></div>
+                    <h5>报警信息</h5>
+               </div>
+               <div class="content">2017-5-24 12:22:12，A楼办公区配电箱发生严重漏电报警</div>
+           </li>
+           <li>
+               <div class="title">
+                   <div class="mask color"></div>
+                    <h5>报警信息</h5>
+               </div>
+               <div class="content">2017-5-24 12:22:12，A楼办公区配电箱发生严重漏电报警</div>
+           </li>
+       </ul>
+   </div>
+   
+       <input class="btn" type="submit" name="" value="登录">
+       
+   
+        <input class="login_btn btn" type="submit" name="" value="登录">
+   底部导航
+   <div id="foot_nav">
+       <ul>
+           <li class="on">
+               <a href="#">
+                       <img src="../img/index_on.png">
+                       <div>信息</div>
+                   </a>
+           </li>
+           <li>
+               <a href="#">
+                       <img src="../img/index_off.png">
+                       <div>信息</div>
+                   </a>
+           </li>
+           <li>
+               <a href="../message/message.html">
+                       <img src="../img/index_off.png">
+                       <div>信息</div>
+                   </a>
+           </li>
+           <li>
+               <a href="../message/message.html">
+                       <img src="../img/index_off.png">
+                       <div>信息</div>
+                   </a>
+           </li>
+       </ul>
+   </div> -->
+     <div id="container">
+        <div id="head_tab">
+            <a href="more.html" class="head_left"><img src="../img/back.png"></a>
+            <h2>修改密码</h2>
+        </div>
+        <div id="wrapper">
+            <div class="form">
+                <!-- <p class="password"> -->
+                <div class="username"></div>
+                <p class="password">
+                    <input type="password" id="password" required placeholder="原密码">
+                </p>
+                <p class="password passwordNew">
+                    <input type="password" id="passwordNew1" required placeholder="新密码">
+                </p>
+                <p class="password passwordNew">
+                    <input type="password" id="passwordNew2" required placeholder="再次输入新密码">
+                </p>
+                <p class="submit">
+                    <input type="submit" value="确认" id="login" class="main_btn">
+                </p>
+            </div>
+            <div class="wrong" style="color:#ff3c3c"></div>
+        </div>
     </div>
 </body>
 <script type="text/javascript">

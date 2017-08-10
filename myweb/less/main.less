@@ -6,7 +6,6 @@
 html {
     font-size: 50px;
 }
-
 * {
     margin: 0px;
     padding: 0px;
@@ -17,12 +16,19 @@ html {
 
 
 /* 去除超链接默认样式 */
-@theme_color:#4da3e6;   //主题色
 a {
     text-decoration: none;
     color: #000;
 }
+/* 去掉Ios按钮默认样式 */
 
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+    -webkit-appearance: none;
+}
+
+/* 公共方法 */
 .verticle(){
     /* 水平垂直居中方法 */
     position: absolute;
@@ -33,24 +39,59 @@ a {
     margin: auto;
 }
 
-/* 去掉Ios按钮默认样式 */
-
-input[type="button"],
-input[type="submit"],
-input[type="reset"] {
-    -webkit-appearance: none;
+.height_set(@height){
+    height:@height;
+    line-height:@height;
 }
 
+/* 全局样式设置 */
+@theme_color:#4da3e6;   //主题色
+@defult_line:0.01rem solid #ddd;    //分割线
+@radius:0.1rem;
+
+/* 字号设置 */
+
+@normal_font:0.26rem;   //默认内容
+@tab_title_font:0.36rem;    //顶部标签栏标题
+@content_title_font:0.30rem;    //内容主标题
+@sub_font:0.20rem;      //辅助性文字
+.font(@font){
+    font-size:@font;
+}
+
+/* 按钮 */
+.common_input(@colorBg,@width,@height,@color){
+    //text-align: center;
+        cursor: hand; 
+        margin: 0 auto;
+        background-color: @colorBg;
+        border:0.01rem solid #ddd;
+        width: @width;
+        .height_set(@height);
+        border-radius: @radius;
+        color:@color;    
+}
+
+/* 登录、退出登录,确认等主按钮 */
+.main_btn{
+    font-size: @content_title_font;
+    .common_input(@theme_color,70%,1rem,#fff)
+}
+
+
+//设置宽度，用于导航分栏选择
+.width_set(@width){
+    width: @width;
+}
 
 
 /* 模块一：顶部标签栏 */
     @head_tab_h:0.88rem;
     #head_tab {
-        height: @head_tab_h;
+        .height_set(@head_tab_h);
         font-size: 0.36rem;
-        line-height: @head_tab_h;
-        width: 100%;
-        border-bottom: 0.01rem solid #ddd;
+       .width_set(100%);
+        border-bottom: @defult_line;
         text-align: center;
         position: relative;
         z-index: 999;
@@ -59,28 +100,25 @@ input[type="reset"] {
         h2 {
             /*标签栏标题*/
             font-size: 0.36rem;
-            height: @head_tab_h;
-            line-height: @head_tab_h;
+            .height_set(@head_tab_h);
         }
     }
 
 
 
-    /*返回位置图标 30px*30px*/
+    /*返回位置图标 0.3rem*0.3rem*/
     .head_tab_side_set(left){
-          display: block;
+        display: block;
         .verticle;
-        height: 0.3rem;
-        line-height: 0.3rem;
+        .height_set(0.3rem);
         margin-left: 0.3rem;
         font-size: 0.28rem;
-         left: 0; /*向右浮动*/
+        left: 0;/*向右浮动*/
     }
     .head_tab_side_set(right){
          display: block;
         .verticle;
-        height: 0.3rem;
-        line-height: 0.3rem;
+        .height_set(0.3rem);
         margin-right: 0.3rem;
         font-size: 0.28rem;
         right: 0; /*向左浮动*/
@@ -103,30 +141,9 @@ input[type="reset"] {
 
 /* 模块二：顶部导航 */
     //顶部导航布局选择设置 
-    .head_nav_set(two){
+    .head_nav_set(@width){
         li{
-         /*两栏布局*/
-         width: 50%;
-         box-sizing: border-box;
-        /*防止内外边距和外框线把宽度撑开*/
-        float: left;
-        height: 100%;
-        }
-    }
-      .head_nav_set(three){
-        li{
-         /*三栏布局*/
-         width: 33.3%;
-         box-sizing: border-box;
-        /*防止内外边距和外框线把宽度撑开*/
-        float: left;
-        height: 100%;
-        }
-    }
-     .head_nav_set(four){
-        li{
-         /*四栏布局*/
-         width: 25%;
+         .width_set(@width);;
          box-sizing: border-box;
         /*防止内外边距和外框线把宽度撑开*/
         float: left;
@@ -135,49 +152,45 @@ input[type="reset"] {
     }
 
     #head_nav {
-        .head_nav_set(two); // 布局选择 
+        /* 顶部导航布局，根据实际情况设置宽度值，如两栏宽度为50%，三栏为33.3%，以此类推 */ 
+        .head_nav_set(50%); 
         margin: 0.2rem 0.3rem;
-        height: 0.65rem;
+        .height_set(0.65rem);
         ul {
-            border-radius: 0.1rem;
+            border-radius: @radius;
             border: 0.01rem @theme_color solid;
             /* 修改导航外框颜色*/
             height: 100%;
             box-sizing: border-box;
-            li {
-                .on {
-                    color: #fff;
-                    background-color: @theme_color;
-                    /* 高亮状态背景颜色 */
+            .on {
+                box-sizing: border-box;
+                background-color: @theme_color;
+                a{
+                     color: #fff;
                 }
+            }
+            li {
                 a {
                     display: block;
                     font-size: 0.28rem;
                     text-align: center;
                     line-height: 0.65rem;
-                    color: @theme_color;
-                    /* 正常状态字颜色 */
                 }
                 &:last-child {
-                    border-radius: 0 0.1rem 0.1rem 0;
+                    border-radius: 0 @radius @radius 0;
                     border-right: 0rem solid @theme_color;
                 }
                 &:first-child {
-                    border-radius: 0.1rem 0 0 0.1rem;
+                    border-radius: @radius 0 0 @radius;
                 }
             }
         }
     }
 
-
 /*通用列表样式，适用于图片+1到2行文字布局，如消息列表，网关列表等*/
-/* 模块四：消息列表 */
-    //message_list
-    #message_list{
 
-    }
 
-/*模块三：设置和个人中心界面*/
+
     .ul(){
         background-color: #fff;
         box-sizing: border-box;
@@ -186,21 +199,21 @@ input[type="reset"] {
     }   
     .li(){
         position: relative;
-      //  padding: 10px 10px 15px 10px;
         overflow: hidden;
-        border-bottom: 0.01rem solid #ddd;
+        border-bottom: @defult_line;
         &:last-child {
             border-bottom: 0px #ddd solid;
         }
     }
-    ///personal_list 
+/*模块三：设置和个人中心界面*/
+    //personal_list 
     #content_list_set{
         ul{
             .ul;
             li{
                .li; 
                height: 1.2rem;
-                img{ /*图片尺寸30px*/
+                img{ /*图片尺寸0.3rem*/
                     .verticle;
                     height: 30%;
                     &:last-child {
@@ -211,8 +224,7 @@ input[type="reset"] {
                     }
                 }
                 div{
-                    height: 1.2rem;
-                    line-height: 1.2rem;
+                    .height_set(1.2rem);
                     font-size: 0.28rem;
                     margin: 0 0.5rem;
                 }
@@ -220,7 +232,7 @@ input[type="reset"] {
         }
         
     }
-
+/* 模块四：消息列表 */
     //message_list
     #message_list{
         ul{
@@ -243,8 +255,7 @@ input[type="reset"] {
                        background-color: #ff3600;
                     }
                     h5{
-                        height: 100%;
-                        line-height:100%;
+                        .height_set(100%);
                         font-size: 0.30rem;
                     }
                 }
@@ -266,22 +277,10 @@ input[type="reset"] {
         height: 100%;
         position: relative;
     }
-      .foot_nav_set(three){
-         /*三栏布局*/
-         width: 33.3%;
+      .foot_nav_set(@width){
+         .width_set(@width);;
          .foot_nav_common;
     }
-     .foot_nav_set(four){
-         /*四栏布局*/
-         width: 25%;
-         .foot_nav_common;
-    }
-     .foot_nav_set(five){
-         /*五栏布局*/
-         width: 20%;
-         .foot_nav_common;
-    }
-
     #foot_nav {
         position: fixed;
         /* fixed; */
@@ -291,25 +290,24 @@ input[type="reset"] {
         background-color: #fff;
         height: 0.98rem;
         width: 100%;
-        border-top: 0.01rem solid #ddd;
+        border-top: @defult_line;
         ul{
             width: 100%;
-            height: 0.98rem;
-            line-height: 0.98rem;
+            .height_set(0.98rem);
             text-align: center;
             .on a div{
                 color: @theme_color;
-                /* 自行修改高亮字体颜色 */
             }
             li{
-                img{    /*底部导航图标54px*54px*/
+                img{    
+                    /*底部导航图标54px*54px*/
                     .verticle;
                     right:0;
                     left:0;
                     height: 0.54rem;
                     margin-top: 0.03rem;
                 }
-                .foot_nav_set(four);
+                .foot_nav_set(25%);//四栏布局
                 a{
                     display: block;
                     height: 100%;
@@ -318,9 +316,48 @@ input[type="reset"] {
                 div{
                     position: relative;
                     bottom: -0.28rem;
-                    color: #929292;
+                    color: #787878;
                     font-size: 0.2rem;
                 }
             }
         }
+    }
+
+/* 模块五：密码修改界面 */
+
+    /* 输入框 */
+    .username{
+        margin-bottom:0.4rme;
+        color:#999;
+        font-size: @normal_font;
+        
+    }
+    #wrapper .form{
+        margin: 0 auto;
+        padding: 0 0.08rem;
+    }
+
+    #wrapper .password{
+        padding: 0 15%;
+        height: 0.8rem;
+        margin: 0.2rem 0px;
+        position: relative;
+    }
+
+    .password input{
+        border: 0px solid;
+        border-bottom: 1px solid #ddd;
+        width: 100%;
+        height: 0.8rem; 
+        font-size: @normal_font;
+        color:#666;
+
+
+    }
+    .submit{
+        height:1rem;
+        text-align: center;
+        width:100%;
+        margin:0.5rem 0;
+
     }
